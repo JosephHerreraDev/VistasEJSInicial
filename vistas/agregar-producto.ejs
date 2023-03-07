@@ -1,0 +1,17 @@
+<%- include('includes/encabezado.ejs')%>
+</head>
+
+<body>
+    <%- include('includes/navegacion.ejs')%>
+
+    <main>
+        <form class="product-form" action="/admin/agregar-producto" method="POST">
+            <div class="form-control">
+                <label for="titulo">Titulo</label>
+                <input type="text" name="titulo" id="titulo">
+            </div>
+
+            <button class="btn" type="submit">Agregar Producto</button>
+        </form>
+    </main>
+<%- include('includes/fin.ejs')%>
