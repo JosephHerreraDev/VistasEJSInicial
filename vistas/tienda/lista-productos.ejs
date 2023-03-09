@@ -24,8 +24,9 @@
                 <p class="producto__descripcion"><%= producto.descripcion %></p>
                 </div>
                 <div class="card_actions">
-                <button class="btn"> Agregar al Carrito</button>
-                </div>
+                    <form action="/agregar-al-carrito" method="POST">
+                    <button class="btn"> Agregar al Carrito</button>
+                    </form> </div>
                 </article>
                 <% } %>
         </div>
