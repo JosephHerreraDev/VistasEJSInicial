@@ -27,6 +27,13 @@ exports.getCarrito = (req, res, next) => {
   });
 };
 
+exports.getOrdenes = (req, res, next) => {
+  res.render("tienda/ordenes", {
+    ruta: "/ordenes",
+    tituloPagina: "Sus Ordenes",
+  });
+};
+
 exports.getComprarAhora = (req, res, next) => {
   res.render("tienda/comprar-ahora", {
     tituloPagina: "Comprar Ahora",
