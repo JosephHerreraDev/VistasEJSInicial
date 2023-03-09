@@ -9,23 +9,25 @@
         <p>Lista de todos los productos...</p>
         <% if(prods.length > 0) { %>
         <div class="grid">
-            <% for(let producto of prods) {%> 
-            <article class="card product-item">
+            <% for(let producto of prods) { %>
+                <article class="card producto-item">
                 <header class="card__header">
-                    <h1 class="product__title"><%= producto.titulo %></h1>
+                <h1 class="producto_titulo">
+                <%= producto.titulo %>
+                </h1>
                 </header>
                 <div class="card__image">
-                    <img src="https://cdn.pixabay.com/photo/2016/03/31/20/51/book-1296045_960_720.png" alt="A Book">
+                <img src="<%= producto.urlImagen %>" alt="<%= producto.titulo %>">
                 </div>
                 <div class="card__content">
-                    <h2 class="product__price">$19.99</h2>
-                    <p class="product__description">Un libro muy interesante acerca de varias cosas interesantes.</p>
+                <h2 class="producto_precio">$<%= producto.precio %></h2>
+                <p class="producto__descripcion"><%= producto.descripcion %></p>
                 </div>
-                <div class="card__actions">
-                    <button class="btn">Agregar al Carrito</button>
+                <div class="card_actions">
+                <button class="btn"> Agregar al Carrito</button>
                 </div>
-            </article>
-            <% } %> 
+                </article>
+                <% } %>
         </div>
         <% } else { %>
             <h1>No se encontraron productos</h1>

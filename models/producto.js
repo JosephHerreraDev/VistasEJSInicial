@@ -1,9 +1,10 @@
 const fs = require("fs");
 const path = require("path");
-const ruta = path.join( 
+const ruta = path.join(
   path.dirname(process.mainModule.filename),
   "datos",
-  "productos.json");
+  "productos.json"
+);
 
 const getProductosDesdArchivo = (cb) => {
   fs.readFile(ruta, (err, fileContent) => {
@@ -15,11 +16,14 @@ const getProductosDesdArchivo = (cb) => {
   });
 };
 module.exports = class Producto {
-  constructor(titulo) {
+  constructor(titulo, urlImagen, descripcion, precio) {
     this.titulo = titulo;
+    this.urlImagen = urlImagen;
+    this.descripcion = descripcion;
+    this.precio = precio;
   }
   guardar() {
-    getProductosDesdArchivo(productos => {
+    getProductosDesdArchivo((productos) => {
       productos.push(this);
       fs.writeFile(ruta, JSON.stringify(productos), (err) => {
         console.log(err);

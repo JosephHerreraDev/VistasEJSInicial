@@ -8,7 +8,11 @@ exports.getAgregarProducto = (req, res, next) => {
 };
 
 exports.postAgregarProducto = (req, res, next) => {
-  const producto = new Producto(req.body.titulo);
+  const titulo = req.body.titulo;
+  const urlImagen = req.body.urlImagen;
+  const descripcion = req.body.descripcion;
+  const precio = req.body.precio;
+  const producto = new Producto(titulo, urlImagen, descripcion, precio);
   producto.guardar();
   res.redirect("/");
 };
