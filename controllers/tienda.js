@@ -38,12 +38,14 @@ exports.getComprarAhora = (req, res, next) => {
   res.render("tienda/comprar-ahora", {
     tituloPagina: "Comprar Ahora",
   });
-}
-
+};
 exports.getProducto = (req, res, next) => {
   const idProd = req.params.idProducto;
-  Producto.encontrarPorId(idProd, producto => {
-  console.log(producto);
+  Producto.encontrarPorId(idProd, (producto) => {
+    res.render("tienda/detalle-producto", {
+      producto: producto,
+      tituloPagina: producto.titulo,
+      ruta: "/productos",
+    });
   });
-  res.redirect('/');
-  };
+};
