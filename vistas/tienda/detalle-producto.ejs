@@ -10,8 +10,6 @@
 </div>
 <h2>$ <%= producto.precio %></h2>
 <p><%= producto.descripcion %> </p>
-<form action="/carrito" method="POST">
-    <button class="btn" type="submit">Agregar al Carrito</button>
-    </form>
+<<%- include('../includes/agregar-al-carrito.ejs', {producto: producto}) %>
 </main>
 <%- include('../includes/fin.ejs') %>

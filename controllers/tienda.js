@@ -49,3 +49,10 @@ exports.getProducto = (req, res, next) => {
     });
   });
 };
+  exports.postCarrito = (req, res, next) => {
+    const idProd = req.body.idProducto;
+    console.log(idProd);
+    res.redirect("/carrito");
+  };
+
+
