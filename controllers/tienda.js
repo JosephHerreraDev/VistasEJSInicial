@@ -42,6 +42,8 @@ exports.getComprarAhora = (req, res, next) => {
 
 exports.getProducto = (req, res, next) => {
   const idProd = req.params.idProducto;
-  console.log(idProd);
+  Producto.encontrarPorId(idProd, producto => {
+  console.log(producto);
+  });
   res.redirect('/');
   };

@@ -6,7 +6,7 @@ const ruta = path.join(
   "productos.json"
 );
 
-const getProductosDesdArchivo = (cb) => {
+const getProductosDesdeArchivo = (cb) => {
   fs.readFile(ruta, (err, fileContent) => {
     if (err) {
       cb([]);
@@ -24,7 +24,7 @@ module.exports = class Producto {
   }
   guardar() {
     this.id = Math.random().toString();
-    getProductosDesdArchivo(productos => {
+    getProductosDesdeArchivo((productos) => {
       productos.push(this);
       fs.writeFile(ruta, JSON.stringify(productos), (err) => {
         console.log(err);
@@ -32,6 +32,12 @@ module.exports = class Producto {
     });
   }
   static mostrarTodo(cb) {
-    getProductosDesdArchivo(cb);
+    getProductosDesdeArchivo(cb);
+  }
+  static encontrarPorId(id, cb) {
+    getProductosDesdeArchivo((productos) => {
+      const producto = productos.find((p) => p.id === id);
+      cb(producto);
+    });
   }
 };
