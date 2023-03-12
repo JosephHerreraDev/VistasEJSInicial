@@ -23,7 +23,8 @@ module.exports = class Producto {
     this.precio = precio;
   }
   guardar() {
-    getProductosDesdArchivo((productos) => {
+    this.id = Math.random().toString();
+    getProductosDesdeArchivo((productos) => {
       productos.push(this);
       fs.writeFile(ruta, JSON.stringify(productos), (err) => {
         console.log(err);

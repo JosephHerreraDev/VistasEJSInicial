@@ -21,4 +21,3 @@ app.use(rutasTienda);
 app.use(controladorError.get404);
 
 app.listen(3000);
-
