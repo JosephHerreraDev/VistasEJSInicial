@@ -39,3 +39,9 @@ exports.getComprarAhora = (req, res, next) => {
     tituloPagina: "Comprar Ahora",
   });
 }
+
+exports.getProducto = (req, res, next) => {
+  const idProd = req.params.idProducto;
+  console.log(idProd);
+  res.redirect('/');
+  };
