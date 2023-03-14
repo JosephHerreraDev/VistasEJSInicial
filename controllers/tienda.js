@@ -1,4 +1,5 @@
 const Producto = require("../models/producto");
+const Carrito = require("../models/carrito");
 
 exports.getProductos = (req, res, next) => {
   Producto.mostrarTodo((productos) => {
@@ -49,10 +50,13 @@ exports.getProducto = (req, res, next) => {
     });
   });
 };
-  exports.postCarrito = (req, res, next) => {
-    const idProd = req.body.idProducto;
-    console.log(idProd);
-    res.redirect("/carrito");
-  };
+
+exports.postCarrito = (req, res, next) => {
+  const idProd = req.body.idProducto;
+  Producto.encontrarPorId(idProd, producto => {
+  Carrito.agregarProducto(idProd, producto.precio);
+  });
+  res.redirect('/carrito');
+};
 
 
