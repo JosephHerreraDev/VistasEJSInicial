@@ -86,8 +86,7 @@ module.exports = class Carrito {
         (prod) => prod.id !== id
       );
       carritoActualizado.precioTotal =
-        carritoActualizado.precioTotal - precioProdu;
-      cto * cantProducto;
+      carritoActualizado.precioTotal - precioProducto * cantProducto;
       fs.writeFile(ruta, JSON.stringify(carritoActualizado), (err) => {
         console.log(err);
       });

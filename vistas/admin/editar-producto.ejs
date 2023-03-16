@@ -5,8 +5,8 @@
     <%- include('../includes/navegacion.ejs')%>
 
     <main>
-        <form class="forma-producto" action="/admin/<% if(editando) { %>editar-producto<% } else { %>agregar-
-            producto <% } %>" method="POST">
+        <form class="forma-producto" action="/admin/<% if(editando) { %>editar-producto<% } else { %>agregar-producto <% } %>" 
+            method="POST">
             
             <div class="form-control">
             <label for="titulo">Titulo</label>
@@ -31,8 +31,7 @@
             <% if(editando) {%>
                 <input type="hidden" value="<%= producto.id %>" name="idProducto">
                 <% } %>
-            <button class="btn" type="submit"><% if(editando) { %>Actualizar Producto <% } else { %> Agregar
-            Producto <% } %></button>
+            <button class="btn" type="submit"><% if(editando) { %>Actualizar Producto <% } else { %> Agregar Producto <% } %></button>
             </form>
     </main>
 <%- include('../includes/fin.ejs')%>
