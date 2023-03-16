@@ -63,3 +63,7 @@ exports.getProductos = (req, res, next) => {
     });
   });
 };
+
+exports.postBorrarProducto = (req, res, next) => {
+  const idProd = req.body.idProducto;
+  };

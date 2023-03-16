@@ -52,4 +52,14 @@ module.exports = class Producto {
       cb(producto);
     });
   }
+  static borrarPorId(id) {
+    getProductosDesdeArchivo( productos => {
+    const productosActualizados = productos.filter(prod => prod.id !== id);
+    fs.writeFile(ruta, JSON.stringify(productosActualizados), err = {
+    if(err) {
+      
+    }
+    });
+    });
+  }
 };

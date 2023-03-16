@@ -26,6 +26,7 @@
                 <div class="card_actions">
                     <a href="/admin/editar-producto" class="btn">Editar</a>
                     <form action="/admin/borrar-producto" method="POST">
+                        <input type="hidden" value="<%= producto.id %>" name="idProducto">
                     <button type="submit" class="btn">Borrar</button> 
                     </form>
                 </div>
