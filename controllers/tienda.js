@@ -22,9 +22,26 @@ exports.getIndex = (req, res, next) => {
 };
 
 exports.getCarrito = (req, res, next) => {
-  res.render("tienda/carrito", {
-    tituloPagina: "Su Carrito",
-    ruta: "/carrito",
+  Carrito.getCarrito((carrito) => {
+    Producto.mostrarTodo((productos) => {
+      const productosCarrito = [];
+      for (producto of productos) {
+        const datosProductoEnCarrito = carrito.productos.find(
+          (prod) => prod.id === producto.id
+        );
+        if (datosProductoEnCarrito) {
+          productosCarrito.push({
+            datosProducto: producto,
+            cant: datosProductoEnCarrito.cant,
+          });
+        }
+      }
+      res.render("tienda/carrito", {
+        ruta: "/carrito",
+        tituloPagina: "Su Carrito",
+        productos: productosCarrito,
+      });
+    });
   });
 };
 
@@ -53,10 +70,8 @@ exports.getProducto = (req, res, next) => {
 
 exports.postCarrito = (req, res, next) => {
   const idProd = req.body.idProducto;
-  Producto.encontrarPorId(idProd, producto => {
-  Carrito.agregarProducto(idProd, producto.precio);
+  Producto.encontrarPorId(idProd, (producto) => {
+    Carrito.agregarProducto(idProd, producto.precio);
   });
-  res.redirect('/carrito');
+  res.redirect("/carrito");
 };
-
-

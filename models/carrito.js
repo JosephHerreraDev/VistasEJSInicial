@@ -90,4 +90,14 @@ module.exports = class Carrito {
       });
     });
   }
+  static getCarrito(cb) {
+    fs.readFile(ruta, (err, fileContent) => {
+      const carrito = JSON.parse(fileContent);
+      if (err) {
+        cb(null);
+      } else {
+        cb(carrito);
+      }
+    });
+  }
 };
