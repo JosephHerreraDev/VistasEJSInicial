@@ -16,19 +16,31 @@ const getProductosDesdeArchivo = (cb) => {
   });
 };
 module.exports = class Producto {
-  constructor(titulo, urlImagen, descripcion, precio) {
+  constructor(id, titulo, urlImagen, descripcion, precio) {
+    this.id = id;
     this.titulo = titulo;
     this.urlImagen = urlImagen;
     this.descripcion = descripcion;
     this.precio = precio;
   }
   guardar() {
-    this.id = Math.random().toString();
     getProductosDesdeArchivo((productos) => {
-      productos.push(this);
-      fs.writeFile(ruta, JSON.stringify(productos), (err) => {
-        console.log(err);
-      });
+      if (this.id) {
+        const indiceProductoExistente = productos.findIndex(
+          (prod) => prod.id === this.id
+        );
+        const productosActualizados = [...productos];
+        productosActualizados[indiceProductoExistente] = this;
+        fs.writeFile(ruta, JSON.stringify(productosActualizados), (err) => {
+          console.log(err);
+        });
+      } else {
+        this.id = Math.random().toString();
+        productos.push(this);
+        fs.writeFile(ruta, JSON.stringify(productos), (err) => {
+          console.log(err);
+        });
+      }
     });
   }
   static mostrarTodo(cb) {

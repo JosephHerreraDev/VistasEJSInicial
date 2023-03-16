@@ -30,14 +30,28 @@ exports.getAgregarProducto = (req, res, next) => {
 exports.postAgregarProducto = (req, res, next) => {
   const titulo = req.body.titulo;
   const urlImagen = req.body.urlImagen;
-  const descripcion = req.body.descripcion;
   const precio = req.body.precio;
-  const producto = new Producto(titulo, urlImagen, descripcion, precio);
+  const desc = req.body.descripcion;
+  const producto = new Producto(null, titulo, urlImagen, desc, precio);
   producto.guardar();
   res.redirect("/");
 };
 
 exports.postEditarProducto = (req, res, next) => {
+  const idProd = req.body.idProducto;
+  const tituloActualizado = req.body.titulo;
+  const precioActualizado = req.body.precio;
+  const urlImagenActualizada = req.body.urlImagen;
+  const descActualizada = req.body.descripcion;
+  const productoActualizado = new Producto(
+    idProd,
+    tituloActualizado,
+    urlImagenActualizada,
+    descActualizada,
+    precioActualizado
+  );
+  productoActualizado.guardar();
+  res.redirect("/admin/productos");
 };
 
 exports.getProductos = (req, res, next) => {
