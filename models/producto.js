@@ -1,3 +1,4 @@
+const Carrito = require("./carrito");
 const fs = require("fs");
 const path = require("path");
 const ruta = path.join(
@@ -53,13 +54,14 @@ module.exports = class Producto {
     });
   }
   static borrarPorId(id) {
-    getProductosDesdeArchivo( productos => {
-    const productosActualizados = productos.filter(prod => prod.id !== id);
-    fs.writeFile(ruta, JSON.stringify(productosActualizados), err = {
-    if(err) {
-      
-    }
-    });
+    getProductosDesdeArchivo((productos) => {
+      const producto = productos.find((prod) => prod.id === id);
+      const productosActualizados = productos.filter((prod) => prod.id !== id);
+      fs.writeFile(ruta, JSON.stringify(productosActualizados), (err) => {
+        if (!err) {
+          Carrito.borrarProducto(id, producto.precio);
+        }
+      });
     });
   }
 };

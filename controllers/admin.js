@@ -66,4 +66,6 @@ exports.getProductos = (req, res, next) => {
 
 exports.postBorrarProducto = (req, res, next) => {
   const idProd = req.body.idProducto;
+  Producto.borrarPorId(idProd);
+  res.redirect('/admin/productos');
   };
