@@ -5,24 +5,31 @@
     <%- include('../includes/navegacion.ejs')%>
 
     <main>
-        <form class="forma-producto" action="/admin/producto" method="POST">
+        <form class="forma-producto" action="/admin/<% if(editando) { %>editar-producto<% } else { %>agregar-
+            producto <% } %>" method="POST">
+            
             <div class="form-control">
-            <label for="titulo" >Titulo</label>
-            <input type="text" name="titulo" id="titulo">
+            <label for="titulo">Titulo</label>
+            <input type="text" name="titulo" id="titulo" value="<% if(editando) { %> <%= producto.titulo
+                %><% } %>">
             </div>
             <div class="form-control">
-            <label for="urlImagen" >URL Imagen</label>
-            <input type="text" name="urlImagen" id="urlImagen">
+            <label for="urlImagen">Url Imagen</label>
+            <input type="text" name="urlImagen" id="urlImagen" value="<% if(editando) { %> <%= producto.urlImagen
+                %><% } %>">
             </div>
             <div class="form-control">
-            <label for="precio" >Precio</label>
-            <input type="number" name="precio" id="precio" step="0.01">
+            <label for="precio">Precio</label>
+            <input type="number" name="precio" id="precio" step="0.01" value="<% if(editando) { %> <%= producto.precio
+                %><% } %>">
             </div>
             <div class="form-control">
-            <label for="descripcion" >Descripcion</label>
-            <textarea name="descripcion" id="descripcion" rows="5"></textarea>
+            <label for="descripcion">Descripcion</label>
+            <textarea name="descripcion" id="descripcion" rows="5"><% if(editando) { %> <%= producto.descripcion
+                %><% } %></textarea>
             </div>
-            <button class="btn" type="submit">Agregar Producto</button>
+            <button class="btn" type="submit"><% if(editando) { %>Actualizar Producto <% } else { %> Agregar
+            Producto <% } %></button>
             </form>
     </main>
 <%- include('../includes/fin.ejs')%>
