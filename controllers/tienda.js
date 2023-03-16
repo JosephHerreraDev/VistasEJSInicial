@@ -75,3 +75,11 @@ exports.postCarrito = (req, res, next) => {
   });
   res.redirect("/carrito");
 };
+
+exports.postBorrarArticuloCarrito = (req, res, next) => {
+  const idProd = req.body.idProducto;
+  Producto.encontrarPorId(idProd, producto => {
+  Carrito.borrarProducto(idProd, producto.precio);
+  res.redirect('/carrito');
+  });
+  };

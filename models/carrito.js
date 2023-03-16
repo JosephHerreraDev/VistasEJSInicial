@@ -78,6 +78,9 @@ module.exports = class Carrito {
       const producto = carritoActualizado.productos.find(
         (prod) => prod.id === id
       );
+      if (!producto) {
+        return;
+      }
       const cantProducto = producto.cant;
       carritoActualizado.productos = carritoActualizado.productos.filter(
         (prod) => prod.id !== id
