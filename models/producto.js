@@ -22,7 +22,7 @@ module.exports = class Producto {
     return bd.execute('SELECT * FROM productos');
   }
   static encontrarPorId(id) {
-
+    return bd.execute('SELECT * FROM productos WHERE productos.id = ?', [id]);
   }
 };
 

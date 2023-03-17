@@ -62,13 +62,15 @@ exports.getComprarAhora = (req, res, next) => {
 };
 exports.getProducto = (req, res, next) => {
   const idProd = req.params.idProducto;
-  Producto.encontrarPorId(idProd, (producto) => {
+  Producto.encontrarPorId(idProd)
+  .then(([producto]) => {
     res.render("tienda/detalle-producto", {
-      producto: producto,
+      producto: producto[0],
       tituloPagina: producto.titulo,
       ruta: "/productos",
     });
-  });
+  })
+  .catch((err) => console.log(err));
 };
 
 exports.postCarrito = (req, res, next) => {
