@@ -1,21 +1,6 @@
 const Carrito = require("./carrito");
-const fs = require("fs");
-const path = require("path");
-const ruta = path.join(
-  path.dirname(process.mainModule.filename),
-  "datos",
-  "productos.json"
-);
+const bd = require("../util/basedatos");
 
-const getProductosDesdeArchivo = (cb) => {
-  fs.readFile(ruta, (err, fileContent) => {
-    if (err) {
-      cb([]);
-    } else {
-      cb(JSON.parse(fileContent));
-    }
-  });
-};
 module.exports = class Producto {
   constructor(id, titulo, urlImagen, descripcion, precio) {
     this.id = id;
@@ -24,44 +9,17 @@ module.exports = class Producto {
     this.descripcion = descripcion;
     this.precio = precio;
   }
-  guardar() {
-    getProductosDesdeArchivo((productos) => {
-      if (this.id) {
-        const indiceProductoExistente = productos.findIndex(
-          (prod) => prod.id === this.id
-        );
-        const productosActualizados = [...productos];
-        productosActualizados[indiceProductoExistente] = this;
-        fs.writeFile(ruta, JSON.stringify(productosActualizados), (err) => {
-          console.log(err);
-        });
-      } else {
-        this.id = Math.random().toString();
-        productos.push(this);
-        fs.writeFile(ruta, JSON.stringify(productos), (err) => {
-          console.log(err);
-        });
-      }
-    });
-  }
-  static mostrarTodo(cb) {
-    getProductosDesdeArchivo(cb);
-  }
-  static encontrarPorId(id, cb) {
-    getProductosDesdeArchivo((productos) => {
-      const producto = productos.find((p) => p.id === id);
-      cb(producto);
-    });
+  guardar() { 
+
   }
   static borrarPorId(id) {
-    getProductosDesdeArchivo((productos) => {
-      const producto = productos.find((prod) => prod.id === id);
-      const productosActualizados = productos.filter((prod) => prod.id !== id);
-      fs.writeFile(ruta, JSON.stringify(productosActualizados), (err) => {
-        if (!err) {
-          Carrito.borrarProducto(id, producto.precio);
-        }
-      });
-    });
+
+  }
+  static mostrarProductos() {
+    return bd.execute('SELECT * FROM productos');
+  }
+  static encontrarPorId(id) {
+
   }
 };
+

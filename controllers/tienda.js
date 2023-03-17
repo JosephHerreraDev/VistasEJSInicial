@@ -2,9 +2,10 @@ const Producto = require("../models/producto");
 const Carrito = require("../models/carrito");
 
 exports.getProductos = (req, res, next) => {
-  Producto.mostrarTodo((productos) => {
+  Producto.mostrarProductos()
+  .then(([filas, datosCampo]) => {
     res.render("tienda/lista-productos", {
-      prods: productos,
+      prods: filas,
       tituloPagina: "Todos los productos",
       ruta: "/productos",
     });
@@ -12,13 +13,15 @@ exports.getProductos = (req, res, next) => {
 };
 
 exports.getIndex = (req, res, next) => {
-  Producto.mostrarTodo((productos) => {
+  Producto.mostrarProductos()
+  .then(([filas, datosCampo]) => {
     res.render("tienda/index", {
-      prods: productos,
+      prods: filas,
       tituloPagina: "Tienda",
       ruta: "/",
     });
-  });
+  })
+  .catch((err) => console.log(err));
 };
 
 exports.getCarrito = (req, res, next) => {

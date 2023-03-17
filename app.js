@@ -11,13 +11,6 @@ const adminRoutes = require('./routes/admin');
 const rutasTienda = require('./routes/tienda');
 const controladorError = require('./controllers/error');
 
-bd.execute('SELECT * FROM productos')
-    .then(resultado => {
-        console.log(resultado);
-    })
-    .catch(err => {
-        console.log(err);
-    });
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
