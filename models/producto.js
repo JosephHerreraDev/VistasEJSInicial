@@ -10,7 +10,10 @@ module.exports = class Producto {
     this.precio = precio;
   }
   guardar() { 
-
+    return bd.execute(
+      'INSERT INTO productos (titulo, precio, urlImagen, descripcion) VALUES (?, ?, ?, ?)',
+      [this.titulo, this.precio, this.urlImagen, this.descripcion]
+    )
   }
   static borrarPorId(id) {
 

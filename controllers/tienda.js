@@ -26,7 +26,7 @@ exports.getIndex = (req, res, next) => {
 
 exports.getCarrito = (req, res, next) => {
   Carrito.getCarrito((carrito) => {
-    Producto.mostrarTodo((productos) => {
+    Producto.mostrarProductos((productos) => {
       const productosCarrito = [];
       for (producto of productos) {
         const datosProductoEnCarrito = carrito.productos.find(
